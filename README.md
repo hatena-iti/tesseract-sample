@@ -7,10 +7,13 @@ Tesseract ライブラリを用いた、OCR（画像からの文字解析）機�
 
 ## 準備
 
-### TesseractOCR.framework の取得
+### Cocoapods（http://cocoapods.org/） のインストール
 
-https://github.com/gali8/Tesseract-OCR-iOS から、
-TesseractOCR.framework のソースを取得します。
+コンソールから以下のコマンドを実行して、Cocoapods をインストールします。（未インストールの場合のみ。）
+
+```
+$ sudo gem install cocoapods
+```
 
 ### traineddata ファイルの取得
 
@@ -20,35 +23,43 @@ https://code.google.com/p/tesseract-ocr/downloads/list から、
 
 ## ビルド
 
-### TesseractOCR.framework の配置
+### Podfile の作成
 
-取得した TesseractOCR.framework のソースの「Products」フォルダの中から、
-「TesseractOCR.framework」ファイルを取得し、対象の XCode Project 内にコピーします。
+プロジェクトのルートに「Podfile」という名前のファイルを作成し、以下内容を記入します。
+
+```
+pod 'TesseractOCRiOS', '~> 2.3'
+```
+
+### 必要なライブラリのインストールと設定
+
+TesseractOCR.framework など、必要なライブラリをインストールするために、コンソールでプロジェクトのルートに移動して、以下のコマンドを実行します。
+
+```
+$ pod install
+```
+
+### プロジェクトを開く
+
+コンソールから以下コマンドを実行して、Xcode でプロジェクトを開きます。
+
+```
+$ open tesseract-sample.xcworkspace
+```
+
+「{プロジェクト名}.xcworkspace」を指定して、「open」コマンドを実行します。
+以降、プロジェクトを開くときは、「{プロジェクト名}.xcworkspace」を指定するようにします。
 
 ### traineddata ファイルの配置
 
-取得した TesseractOCR.framework のソースの「Template Framework Project」フォルダ内の
-「tessdata」フォルダを、対象のXCode プロジェクトのルートにドラッグしてコピーします。
-このとき、「<code>Create folder references for any added folders</code>」オプションを
-選択しておきます。
+「tessdata」フォルダをプロジェクト内に作成して、各言語用のデータファイル（*.traineddata）をその中に格納します。
+XCode を開いて、このフォルダをプロジェクトのソースツリーにドラッグして追加します。このとき、「<code>Create folder references for any added folders</code>」オプションを指定して追加するようにします。
 
-追加の言語用のデータファイル（日本語用データファイルなど）がある場合は、
-この「tessdata」フォルダに配置します。
-
-### libstdc++.6.0.9.dylib ライブラリへのリンク（iOS7以降）
+### CoreImage.framework へのリンク
 
 対象 XCode プロジェクトの「General」=>「Linked Frameworks and Libraries」=>「+」を
-選択して、「<code>libstdc++.6.0.9</code>」を追加します。
-
-### Other Linker Flags の設定
-
-対象 XCode プロジェクトの「Build Settings」=>「Other Linker Flags」を
-選択して、「<code>-lstdc++</code>」を値として指定します。
-
-### C++ Standard Library の設定
-
-対象 XCode プロジェクトの「Build Settings」=>「C++ Standard Library」を
-選択して、その値を「<code>Compiler Default</code>」に設定します。
+選択して、「<code>CoreImage.framework</code>」を追加します。
+　
 
 ## TesseractOCR.framework の機能の利用
 

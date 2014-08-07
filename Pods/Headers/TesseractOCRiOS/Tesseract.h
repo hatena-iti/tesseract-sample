@@ -1,0 +1,1 @@
+../../TesseractOCRiOS/TesseractOCR/Tesseract.h
