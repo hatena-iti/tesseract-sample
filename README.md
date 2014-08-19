@@ -3,6 +3,10 @@ tesseract-sample
 
 Tesseract ライブラリを用いた、OCR（画像からの文字解析）機能の iOS アプリサンプルです。
 
+### 関連するブログ記事：
+
+[Intelligent Technology's Technical Blog - iOS で OCR](http://iti.hatenablog.jp/entry/2014/08/08/091819)
+
 # （参考）Tesseract ライブラリの導入手順
 
 ## 準備
